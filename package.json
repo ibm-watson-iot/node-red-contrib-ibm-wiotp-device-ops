@@ -1,0 +1,38 @@
+{
+	"name": "node-red-contrib-ibm-wiotp-device-ops",
+	"version": "0.1.0",
+	"description": "A collection of Node-RED nodes that can perform a wide range of device and gateway operations on the Watson IoT platform",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ibm-watson-iot/node-red-contrib-ibm-wiotp-device-ops"
+	},
+	"readmeFilename": "README.md",
+	"contributors": [{
+		"name": "Amit M Mangalvedkar",
+		"email": "amitmangalvedkar@in.ibm.com"
+	}, {
+		"name": "Jeffrey Dare",
+		"email": "jeffdare@in.ibm.com"
+	}, {
+		"name": "Hari hara prasad Viswanathan",
+		"email": "harihvis@in.ibm.com"
+	}],
+	"license": "Apache-2.0",
+	"keywords": ["node-red",
+		"IoT",
+		"Watson",
+		"manager",
+		"Device",
+		"Type"
+	],
+	"dependencies": {
+		"ibmiotf": "latest",
+		"cfenv": "*"
+	},
+	"node-red": {
+		"nodes": {
+			"Device Factory": "device_manager.js",
+			"Device Type": "device_type_manager.js"
+		}
+	}
+}
