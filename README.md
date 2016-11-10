@@ -2,6 +2,13 @@
 
 A collection of Node-RED nodes that can perform a wide range of device and gateway operations on the Watson IoT platform
 
+Install
+-------
+Install from [npm](http://npmjs.org)
+```
+npm install node-red-contrib-ibm-wiotp-device-ops
+```
+
 ##Device Type Manager node:
 
 Device Type Manager node will help you to perform actions on device types in the IBM Watson IoT Platform
@@ -121,3 +128,7 @@ If you want to use the bulk create/delete operations, pass the the input as an a
     ]
 
 ```
+
+Copyright and license
+----------------------
+Copyright 2014, 2016 IBM Corp. under the [Apache 2.0 license](http://www.apache.org/licenses/LICENSE-2.0).
