@@ -31,8 +31,8 @@
 	},
 	"node-red": {
 		"nodes": {
-			"Device Factory": "device_manager.js",
-			"Device Type": "device_type_manager.js"
+			"Device Factory": "nodes/device_manager.js",
+			"Device Type": "nodes/device_type_manager.js"
 		}
 	}
 }
