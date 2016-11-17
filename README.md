@@ -57,7 +57,7 @@ Metadata can be used to define custom attribute fields that are not provided by 
 
 -------
 ## Device manager node :
-Device manager node lets you perform actions on devices that are connected to IBM Watson IoT Platform.  For some fields, the value can be passed in the `msg`.  Any feilds set on the node explicitly take precedence.
+Device manager node lets you perform actions on devices that are connected to IBM Watson IoT Platform.  For some fields, the value can be passed in the `msg`.  Any fields set on the node explicitly take precedence.
 
 
 ### Authentication
