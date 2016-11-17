@@ -331,35 +331,34 @@ limitations under the License.
 
 
 <script type="text/x-red" data-help-name="device-type-manager">
-    <p>This node will help you to perform actions on device types in the IBM Watson IoT Platform</p>
+    <p>Device Type Manager node can perform actions on device types in the IBM Watson IoT Platform. For some fields, the value can be passed in the <code>msg</code>. Any fields set on the node explicitly take precedence.</p>
     <p>
         <b>Authentication</b> Authentication type. <br/>
-        1. <i>Bluemix Service</i> - Uses the Watson IoT service bound to this application<br/>
-        2. <i>API Key</i> - Use the API key of your Organization of Watson IoT Platform<br/><br/>
+        1. <i>Bluemix Service</i> - Uses the Watson IoT Platform service bound to the application.<br/>
+        2. <i>API Key</i> - Use an API key for your Watson IoT Platform organization.<br/><br/>
 
-        <b>Device Type</b> In case of <b>delete</b>, <b>retrieve single device type</b> or <b>update</b> operations, this lists the Device types present in your organization.
-        In case of <b>Create</b> operation, this value has to be passed. You can also pass this value from payload as <code>msg.payload.deviceType</code>. But values present in configuration takes more precedence.<br/><br/>
+        <b>Device Type</b> - Available for delete, retrieve single device type or update operations, this specifies the Device type for the operation. May be specified by <code>msg.payload.deviceType</code>.<br/><br/>
 
-        <b>Class Id</b> This could either be <b>Gateway</b> or a <b>Device</b><br/><br/>
-        <b>Operation </b> that can be performed on the device types on Watson IoT Platform. For more information, visit <a target="_blank" href="https://docs.internetofthings.ibmcloud.com/swagger/v0002.html#!/Devices/">swagger page</a>. <br/><br/>
+        <b>Class Id</b> - Available for create operation. Either <b>Gateway</b> or <b>Device</b>.<br/><br/>
+        
+        <b>Operation</b> - Specifies the operation to be performed. For more information, read the <a target="_blank" href="https://console.ng.bluemix.net/docs/services/IoT/index.html">Watson IoT Platform documentation</a>. May be specified by <code>msg.operation</code>.<br/><br/>
 
-        <b>Serial Number</b> can form one aspect of a devices identifying attributes. Serial numbers are likely to be unique within a model number, but cannot be taken as a device identifier alone.
-        This value could be passed from payload as <code>msg.payload.serialNumber</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Device Info Description</b> will be copied to all devices of this type when they are added to the Watson IoT Platform.
-        This value could be passed from payload as <code>msg.payload.infoDescription</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Manufacturer</b> attribute lists the manufacturer of devices in this device type.
-        This value could be passed from payload as <code>msg.payload.manufacturer</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Firmware Version</b> currently installed on the device.
-        This value could be passed from payload as <code>msg.payload.firmwareVersion</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Model</b> denote groups of devices that serve the same function or have the same characteristics, but may have different hardware versions.
-        This value could be passed from payload as <code>msg.payload.model</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Hardware Version</b> of a device.
-        This value could be passed from payload as <code>msg.payload.hardwareVersion</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Device Class</b> A class of devices is a grouping of devices sharing certain characteristics. A device class usually serves a descriptive function.
-        This value could be passed from payload as <code>msg.payload.deviceClass</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Descriptive Location</b> The descriptive location of a device is a separate attribute of a device, and gives a descriptive location rather than a specific measured location.
-        This value could be passed from payload as <code>msg.payload.descriptiveLocation</code>. But values present in configuration take more precedence.<br/><br/>
-        <b>Metadata</b> can be used to define custom attribute fields that are not provided by the Watson IoT Platform.
-        This value could be passed from payload as <code>msg.payload.metadata</code>. But values present in configuration take more precedence.<br/><br/>
+        <b>Serial Number (Optional property)</b> - Serial Number can form one aspect of a devices identifying attributes. Serial numbers are likely to be unique within a model number, but cannot be taken as a device identifier alone. May be specified by <code>msg.payload.serialNumber</code>.<br/><br/>
+        
+        <b>Device Info Description (Optional property)</b> - This will be copied to all devices of this type when they are added to the Watson IoT Platform. May be specified by <code>msg.payload.infoDescription</code>.<br/><br/>
+        
+        <b>Manufacturer (Optional property)</b> - The attribute lists the manufacturer of devices in this device type. May be specified by <code>msg.payload.manufacturer</code>.<br/><br/>
+        
+        <b>Firmware Version (Optional property)</b> - Current firmware version installed on the device. May be specified by <code>msg.payload.firmwareVersion</code>.<br/><br/>
+        
+        <b>Model (Optional property)</b> - This denote groups of devices that serve the same function or have the same characteristics, but may have different hardware versions. May be specified bypayload as <code>msg.payload.model</code>.<br/><br/>
+        
+        <b>Hardware Version (Optional property)</b> - <code>May be specified by msg.payload.hardwareVersion</code>.<br/><br/>
+        
+        <b>Device Class (Optional property)</b> - A class of devices is a grouping of devices sharing certain characteristics. A device class usually serves a descriptive function. May be specified by <code>msg.payload.deviceClass</code>.<br/><br/>
+        
+        <b>Descriptive Location (Optional property)</b> - The descriptive location of a device is a separate attribute of a device, and gives a descriptive location rather than a specific measured location. May be specified by <code>msg.payload.descriptiveLocation</code>.<br/><br/>
+        
+        <b>Metadata (Optional property)</b> - Metadata can be used to define custom attribute fields that are not provided by the Watson IoT Platform. May be specified by <code>msg.payload.metadata</code>.<br/><br/>
     </p>
 </script>
