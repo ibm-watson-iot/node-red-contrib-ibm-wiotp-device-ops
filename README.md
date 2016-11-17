@@ -11,7 +11,7 @@ npm install node-red-contrib-ibm-wiotp-device-ops
 
 ##Device Type Manager node:
 
-Device Type Manager node can perform actions on device types in the IBM Watson IoT Platform.  For some fields, the value can be passed in the `msg.payload`.  Any feilds set on the node explicitly take precedence.
+Device Type Manager node can perform actions on device types in the IBM Watson IoT Platform.  For some fields, the value can be passed in the `msg.payload`.  Any fields set on the node explicitly take precedence.
 
 ### Authentication
 ##### Authentication type :  
