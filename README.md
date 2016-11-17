@@ -62,11 +62,11 @@ Device manager node lets you perform actions on devices that are connected to IB
 
 ### Authentication
 ##### Authentication type:
-1.	Bluemix Service - Use the Watson IoT service bound to this application
-2.	API Key - Use a Watson IoT Platform API key from your organization
+1.	Bluemix Service - Use the Watson IoT service bound to the application.
+2.	API Key - Use an API key for your Watson IoT Platform organization.
 
 ### Device Type
-Lists the device types that are present in your organization. May be specified by `msg.payload.deviceType`.
+The device type for the operation. May be specified by `msg.payload.deviceType`.
 
 ### Device Operation
 Operations that can be performed on the device on Watson IoT Platform. For more information, read the [Watson IoT Platform documentation](https://console.ng.bluemix.net/docs/services/IoT/index.html). May be specified by `msg.operation.xxx` where `xxx` values supported are:
