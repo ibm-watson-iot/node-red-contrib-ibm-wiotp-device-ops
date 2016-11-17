@@ -16,17 +16,17 @@ Device Type Manager node can perform actions on device types in the IBM Watson I
 ### Authentication
 ##### Authentication type :  
 1. Bluemix Service - Uses the Watson IoT Platform service bound to the application.
-2. API Key - Use the API key of your Organization of Watson IoT Platform.
+2. API Key - Use an API key for your Watson IoT Platform organization.
 
 ### Device Type
 
-Available to delete, retrieve single device type or update operations, this specifies the Device type for the operation.  May be specified by `msg.payload.deviceType`.
+Available for delete, retrieve single device type or update operations, this specifies the Device type for the operation.  May be specified by `msg.payload.deviceType`.
 
 ### Class Id
-Either 'Gateway' or 'Device'.
+Available for create operation.  Either 'Gateway' or 'Device'.
 
 ### Operations
-Specifies the operation to be performed.  For more information, read the [Watson IoT Platform documentation](https://console.ng.bluemix.net/docs/services/IoT/index.html).
+Specifies the operation to be performed.  For more information, read the [Watson IoT Platform documentation](https://console.ng.bluemix.net/docs/services/IoT/index.html).  May be specified by `msg.operation`.
 
 ### Serial Number (Optional property)
 Serial Number can form one aspect of a devices identifying attributes. Serial numbers are likely to be unique within a model number, but cannot be taken as a device identifier alone.  May be specified by `msg.payload.serialNumber`.
