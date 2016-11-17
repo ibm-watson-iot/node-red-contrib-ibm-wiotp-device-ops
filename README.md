@@ -1,6 +1,6 @@
 # node-red-contrib-ibm-wiotp-device-ops
 
-A collection of Node-RED nodes that can perform a wide range of device and gateway operations on the Watson IoT platform
+A collection of Node-RED nodes to perform device and gateway operations using the Watson IoT Platform.
 
 Install
 -------
@@ -11,56 +11,54 @@ npm install node-red-contrib-ibm-wiotp-device-ops
 
 ##Device Type Manager node:
 
-Device Type Manager node will help you to perform actions on device types in the IBM Watson IoT Platform
+Device Type Manager node can perform actions on device types in the IBM Watson IoT Platform.  For some fields, the value can be passed in the msg.payload.  Any feilds set on the node explicitly take precedence.
+
 ### Authentication
 ##### Authentication type :  
-1. Bluemix Service - Uses the Watson IoT service bound to this application
-2. API Key - Use the API key of your Organization of Watson IoT Platform
+1. Bluemix Service - Uses the Watson IoT Platform service bound to the application.
+2. API Key - Use the API key of your Organization of Watson IoT Platform.
 
 ### Device Type
 
-In case of delete, retrieve single device type or update operations, this lists the Device types present in your organization.
-
-In case of Create operation, this value has to be passed. You can also pass this value from payload as msg.payload.deviceType. But values present in configuration takes more precedence.
+Available to delete, retrieve single device type or update operations, this specifies the Device type for the operation.  May be specified by `msg.payload.deviceType`.
 
 ### Class Id
-This could either be Gateway or a Device
+Either 'Gateway' or 'Device'.
 
 ### Operations
- Operation that can be performed on the device types on Watson IoT Platform. For more information, visit [swagger page](https://docs.internetofthings.ibmcloud.com/swagger/v0002.html).
+Specifies the operation to be performed.  For more information, read the [Watson IoT Platform documentation](https://console.ng.bluemix.net/docs/services/IoT/index.html).
 
-### Serial Number
-Serial Number can form one aspect of a devices identifying attributes. Serial numbers are likely to be unique within a model number, but cannot be taken as a device identifier alone. This value could be passed from payload as `msg.payload.serialNumber`. But values present in configuration take more precedence.
+### Serial Number (Optional property)
+Serial Number can form one aspect of a devices identifying attributes. Serial numbers are likely to be unique within a model number, but cannot be taken as a device identifier alone.  May be specified by `msg.payload.serialNumber`.
 
-### Device Info Description
-This will be copied to all devices of this type when they are added to the Watson IoT Platform. This value could be passed from payload as `msg.payload.infoDescription`. But values present in configuration take more precedence.
+### Device Info Description (Optional property)
+This will be copied to all devices of this type when they are added to the Watson IoT Platform.  May be specified by `msg.payload.infoDescription`.
 
-### Manufacturer
-The attribute lists the manufacturer of devices in this device type. This value could be passed from payload as `msg.payload.manufacturer`. But values present in configuration take more precedence.
+### Manufacturer (Optional property)
+The attribute lists the manufacturer of devices in this device type. May be specified by `msg.payload.manufacturer`.
 
-### Firmware Version
-  Current firmware version installed on the device. This value could be passed from payload as `msg.payload.firmwareVersion`. But values present in configuration take more precedence.
+### Firmware Version (Optional property)
+Current firmware version installed on the device.  May be specified by `msg.payload.firmwareVersion`.
 
-### Model
-This denote groups of devices that serve the same function or have the same characteristics, but may have different hardware versions. This value could be passed from `payload as msg.payload.model`. But values present in configuration take more precedence.
+### Model (Optional property)
+This denote groups of devices that serve the same function or have the same characteristics, but may have different hardware versions. May be specified by`payload as msg.payload.model`.
 
-### Hardware Version of a device
- This value could be passed from payload as `msg.payload.hardwareVersion`. But values present in configuration take more precedence.
+### Hardware Version of a device (Optional property)
+May be specified by `msg.payload.hardwareVersion`.
 
-### Device Class
-A class of devices is a grouping of devices sharing certain characteristics. A device class usually serves a descriptive function. This value could be passed from payload as `msg.payload.deviceClass`. But values present in configuration take more precedence.
+### Device Class (Optional property)
+A class of devices is a grouping of devices sharing certain characteristics. A device class usually serves a descriptive function. May be specified by `msg.payload.deviceClass`.
 
-### Descriptive Location
-The descriptive location of a device is a separate attribute of a device, and gives a descriptive location rather than a specific measured location. This value could be passed from payload as `msg.payload.descriptiveLocation`. But values present in configuration take more precedence.
+### Descriptive Location (Optional property)
+The descriptive location of a device is a separate attribute of a device, and gives a descriptive location rather than a specific measured location. May be specified by `msg.payload.descriptiveLocation`. 
 
-### Metadata  
-Metadata can be used to define custom attribute fields that are not provided by the Watson IoT Platform. This value could be passed from payload as `msg.payload.metadata`. But values present in configuration take more precedence.
-
-
+### Metadata (Optional property)
+Metadata can be used to define custom attribute fields that are not provided by the Watson IoT Platform. May be specified by `msg.payload.metadata`.
 
 -------
 ## Device manager node :
-Device manager node lets you perform actions on devices that are connected to IBM Watson IoT Platform
+Device manager node lets you perform actions on devices that are connected to IBM Watson IoT Platform.  For some fields, the value can be passed in the msg.payload.  Any feilds set on the node explicitly take precedence.
+
 
 ### Authentication
 ##### Authentication type:
@@ -68,11 +66,11 @@ Device manager node lets you perform actions on devices that are connected to IB
 2.	API Key - Use a Watson IoT Platform API key from your organization
 
 ### Device Type
-Lists the device types that are present in your organization. You can also pass this value from a payload by using `msg.payload.deviceType`. However, values that are present in the configuration takes precedence.
+Lists the device types that are present in your organization. May be specified by `msg.payload.deviceType`.
 
 ### Device Operation
-Operations that can be performed on the device on Watson IoT Platform. For more information, see the devices API documentation. You can also pass the value from a msg by using `msg.operation. `
-The following values are supported:
+Operations that can be performed on the device on Watson IoT Platform. For more information, read the [Watson IoT Platform documentation](https://console.ng.bluemix.net/docs/services/IoT/index.html). May be specified by `msg.operation.xxx` where `xxx` values supported are:
+
 *	GetAll
 *	Create
 *	Get
@@ -82,9 +80,9 @@ The following values are supported:
 *	UpdateLoc
 *	GetDm
 
-To pass the pass the values dynamically, you must pass the input in` msg.payload`.
+## Examples
 
-For example, to create a device, pass the following JSON in ` msg.payload `
+### Create device using `msg.payload.`:
 
 ```
 
@@ -113,7 +111,7 @@ For example, to create a device, pass the following JSON in ` msg.payload `
 
 ```
 
-If you want to use the bulk create/delete operations, pass the the input as an array in `msg.payload`.
+### Bulk create/delete, pass the the input as an array in `msg.payload`:
 
 ```
     [
