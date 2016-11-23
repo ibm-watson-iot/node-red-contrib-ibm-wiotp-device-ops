@@ -28,13 +28,14 @@ Available for delete, retrieve single device type or update operations, this spe
 Available for create operation.  Either 'Gateway' or 'Device'.
 
 ### Operations
-Specifies the operation to be performed.  For more information, read the [Watson IoT Platform documentation](https://console.ng.bluemix.net/docs/services/IoT/index.html).  May be specified by `msg.operation`.
+Specifies the operation to be performed.  For more information, read the [Watson IoT Platform documentation](https://console.ng.bluemix.net/docs/services/IoT/index.html).  May be specified by `msg.operation.xxx` where `xxx` values supported are:
 
-* List Device Types
-* Create Device Type
-* Delete Device Type
-* Get Device Type with supplied Device Type Id
-* Update Device Type with supplied Device Type Id
+*	GetAll
+*	Create
+*	Delete
+*	Get
+*	Update
+
 
 ### Serial Number (Optional property)
 Serial Number can form one aspect of a devices identifying attributes. Serial numbers are likely to be unique within a model number, but cannot be taken as a device identifier alone.  May be specified by `msg.payload.serialNumber`.
