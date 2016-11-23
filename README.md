@@ -2,6 +2,8 @@
 
 A collection of Node-RED nodes to perform device and gateway operations using the Watson IoT Platform.
 
+![IBM Watson IoT Device / Device Type Operations](http://developer.ibm.com/iotplatform/wp-content/uploads/sites/24/2016/10/Device-Manager.png)
+
 Install
 -------
 Install from [npm](http://npmjs.org)
@@ -50,7 +52,7 @@ May be specified by `msg.payload.hardwareVersion`.
 A class of devices is a grouping of devices sharing certain characteristics. A device class usually serves a descriptive function. May be specified by `msg.payload.deviceClass`.
 
 ### Descriptive Location (Optional property)
-The descriptive location of a device is a separate attribute of a device, and gives a descriptive location rather than a specific measured location. May be specified by `msg.payload.descriptiveLocation`. 
+The descriptive location of a device is a separate attribute of a device, and gives a descriptive location rather than a specific measured location. May be specified by `msg.payload.descriptiveLocation`.
 
 ### Metadata (Optional property)
 Metadata can be used to define custom attribute fields that are not provided by the Watson IoT Platform. May be specified by `msg.payload.metadata`.

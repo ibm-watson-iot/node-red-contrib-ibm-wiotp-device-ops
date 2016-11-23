@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  **/
- 
+
 module.exports = function(RED) {
     "use strict";
     var cfEnv = require("cfenv");
@@ -151,7 +151,8 @@ module.exports = function(RED) {
 
           // take the values from config, if not get it from msg.
           var deviceType = config.deviceType ? config.deviceType : msg.payload.deviceType;
-          var deviceTypeId = config.deviceTypeId ? config.deviceTypeId : msg.payload.deviceTypeId;
+          //This has been modified from msg.payload.deviceTypeId to msg.payload.deviceType so that the user need not pass deviceTypeId for create operation and deviceType for other operations
+          var deviceTypeId = config.deviceTypeId ? config.deviceTypeId : msg.payload.deviceType;
 
           var classId = config.classId ? config.classId : msg.payload.classId;
 
