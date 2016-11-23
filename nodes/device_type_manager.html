@@ -334,48 +334,57 @@ limitations under the License.
     <p>Device Type Manager node can perform actions on device types in the IBM Watson IoT Platform. For some fields, the value can be passed in the <code>msg</code>. Any fields set on the node explicitly take precedence.</p>
     <p>
     <dl>
-    
-    <dt>Authentication</dt> 
+
+    <dt>Authentication</dt>
     <dd>Authentication type. <br/>
         <ol>
         <li><i>Bluemix Service</i> - Use the Watson IoT service bound to this application</li>
         <li><i>API Key</i> - Use a  Watson IoT Platform API key from your organization of</li>
         </ol>
     </dd>
-    
+
     <dt>Device Type</dt>
     <dd>Available for delete, retrieve single device type or update operations, this specifies the Device type for the operation. May be specified by <code>msg.payload.deviceType</code>.</dd>
 
     <dt>Class Id</dt>
     <dd>Available for create operation. Either <b>Gateway</b> or <b>Device</b>.</dd>
-    
+
     <dt>Operation</dt>
-    <dd>Specifies the operation to be performed. For more information, read the <a target="_blank" href="https://console.ng.bluemix.net/docs/services/IoT/index.html">Watson IoT Platform documentation</a>. May be specified by <code>msg.operation</code>.</dd>
+    <dd>Specifies the operation to be performed. For more information, read the <a target="_blank" href="https://console.ng.bluemix.net/docs/services/IoT/index.html">Watson IoT Platform documentation</a>. May be specified by <code>msg.operation.xxx</code>where <code>xxx</code> values supported are: <br/>
+      <ul>
+        <li>GetAll</li>
+        <li>Create</li>
+        <li>Delete</li>
+        <li>Get</li>
+        <li>Update</li>
+      </ul>
+      <br/>
+    </dd>
 
     <dt>Serial Number (Optional property)</at>
     <dd>Serial Number can form one aspect of a devices identifying attributes. Serial numbers are likely to be unique within a model number, but cannot be taken as a device identifier alone. May be specified by <code>msg.payload.serialNumber</code>.</dd>
-        
+
     <dt>Device Info Description (Optional property)</dt>
     <dd>This will be copied to all devices of this type when they are added to the Watson IoT Platform. May be specified by <code>msg.payload.infoDescription</code>.</dd>
-        
+
     <dt>Manufacturer (Optional property)</dt>
     <dd>The attribute lists the manufacturer of devices in this device type. May be specified by <code>msg.payload.manufacturer</code>.</dd>
-        
+
     <dt>Firmware Version (Optional property)</dt>
     <dd>Current firmware version installed on the device. May be specified by <code>msg.payload.firmwareVersion</code>.</dd>
-        
+
     <dt>Model (Optional property)</dt>
     <dd>This denote groups of devices that serve the same function or have the same characteristics, but may have different hardware versions. May be specified bypayload as <code>msg.payload.model</code>.</dd>
-        
+
     <dt>Hardware Version (Optional property)</dt>
     <dd>May be specified by <code>msg.payload.hardwareVersion</code>.</dd>
-        
+
     <dt>Device Class (Optional property)</dt>
     <dd>A class of devices is a grouping of devices sharing certain characteristics. A device class usually serves a descriptive function. May be specified by <code>msg.payload.deviceClass</code>.</dd>
-        
+
     <dt>Descriptive Location (Optional property)</dt>
     <dd>The descriptive location of a device is a separate attribute of a device, and gives a descriptive location rather than a specific measured location. May be specified by <code>msg.payload.descriptiveLocation</code>.</dd>
-        
+
     <dt>Metadata (Optional property)</dt>
     <dd>Metadata can be used to define custom attribute fields that are not provided by the Watson IoT Platform. May be specified by <code>msg.payload.metadata</code>.</dd>
     </dl>

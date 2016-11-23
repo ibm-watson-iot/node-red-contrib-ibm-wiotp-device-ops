@@ -137,6 +137,7 @@ module.exports = function(RED) {
           node.status({fill:"blue",shape:"dot",text:"Requesting"});
 
           //pass the operation name in msg
+          //Only for classId and operation, the value passed from the backend overrides the default value
           var operation = msg.operation ? msg.operation : config.method;
 		  var operation_lowercase=operation.toLowerCase();;
           //rest all values from msg.payload
@@ -154,7 +155,8 @@ module.exports = function(RED) {
           //This has been modified from msg.payload.deviceTypeId to msg.payload.deviceType so that the user need not pass deviceTypeId for create operation and deviceType for other operations
           var deviceTypeId = config.deviceTypeId ? config.deviceTypeId : msg.payload.deviceType;
 
-          var classId = config.classId ? config.classId : msg.payload.classId;
+          //Only for classId and operation, the value passed from the backend overrides the default value
+          var classId = msg.payload.classId ? msg.payload.classId : config.classId || "Device";
 
           var props ={}
           for (var i = 0; i < config.properties.length; i++) {
