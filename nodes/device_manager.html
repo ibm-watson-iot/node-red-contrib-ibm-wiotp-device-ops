@@ -12,7 +12,63 @@ limitations under the License.
 -->
 
 <script type="text/x-red" data-template-name="device-manager">
+  <style>
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 18px;
+  }
 
+  .switch input {display:none;}
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  input:checked + .slider {
+    background-color: #ad1625;
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(11px);
+    -ms-transform: translateX(11px);
+    transform: translateX(11px);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+  </style>
     <div class="form-row">
         <label for="node-input-auth"><!-- <i class="fa fa-unlock"> --></i>Authentication</label>
         <select type="text" id="node-input-auth" style="width:72%;">
@@ -54,7 +110,10 @@ limitations under the License.
         <label for="node-input-deviceId"><i class="fa fa-plug"></i> Device Id</label>
         <input type="text" id="node-input-deviceId" placeholder="e.g device1"  >
     </div>
-
+    <div class="form-row" id="dm-ignore-cont">
+        <label for="node-input-ignore" ><i class="fa fa-info"></i> Ignore pre-exist</label>
+        <label class="switch" style="top: 10px;width: 30px;"><input type="checkbox" id="node-input-ignore" checked="checked"><div class="slider round"></div></label>
+    </div>
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -81,7 +140,8 @@ limitations under the License.
             deviceType : { value : "" },
             method : {value:  "GetAll"},
             deviceId : { value : "" },
-            password : { value : "" }
+            password : { value : "" },
+            ignore : {value : false}
         },
         inputs:1,
         outputs:1,
@@ -146,6 +206,11 @@ limitations under the License.
                 }else {
                     $("#dev-id-cont").show();
                 }
+                if(this.value === "Create"){
+                    $("#dm-ignore-cont").show();
+                }else {
+                    $("#dm-ignore-cont").hide();
+                }
 
             });
 
@@ -200,10 +265,10 @@ limitations under the License.
         <li><i>API Key</i> - Use an API key for your Watson IoT Platform organization.</li>
         </ol>
     </dd>
-    
+
     <dt>Device Type</dt>
     <dd>The device type for the operation. May be specified by <code>msg.payload.deviceType</code>.</dd>
-    
+
     <dt>Device Operation</dt>
     <dd>Operations that can be performed on the device on Watson IoT Platform. For more information, read the <a target="_blank" href="https://console.ng.bluemix.net/docs/services/IoT/index.html">Watson IoT Platform documentation</a>. May be specified by <code>msg.operation.xxx</code> where <code>xxx</code> values supported are: <br/>
     <ul>

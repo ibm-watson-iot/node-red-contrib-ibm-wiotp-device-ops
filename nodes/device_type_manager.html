@@ -12,7 +12,63 @@ limitations under the License.
 -->
 
 <script type="text/x-red" data-template-name="device-type-manager">
+    <style>
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 18px;
+    }
 
+    .switch input {display:none;}
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 15px;
+      width: 15px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #ad1625;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(11px);
+      -ms-transform: translateX(11px);
+      transform: translateX(11px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+    </style>
     <div class="form-row">
         <label for="node-input-auth" style="width:180px;"><i class="fa fa-unlock"></i>Authentication</label>
         <select type="text" id="node-input-auth"  style="width:220px;">
@@ -61,7 +117,10 @@ limitations under the License.
             <option value="Gateway" >Gateway</option>
         </select>
     </div>
-
+    <div class="form-row" id="dt-ignore-cont">
+        <label for="node-input-ignore" style="width:180px;"><i class="fa fa-info"></i> Ignore pre-exist</label>
+        <label class="switch" style="top: 10px;width: 30px;"><input type="checkbox" id="node-input-ignore" checked="checked"><div class="slider round"></div></label>
+    </div>
     <div id="dev-type-optional">
 
       <div class="form-row node-input-option-container-row" style="margin-bottom: 0px;width: 100%">
@@ -114,7 +173,8 @@ limitations under the License.
             descriptiveLocation : { value : ""},
             metadata : { value : ""},
             password : { value : "" },
-            properties: {value:[]}
+            properties: {value:[]},
+            ignore : {value : false}
         },
         inputs:1,
         outputs:1,
@@ -175,21 +235,25 @@ limitations under the License.
                     $("#node-form-row-deviceType").hide();
                     $("#node-form-row-classId").hide();
                     $("#dev-type-optional").hide();
+                    $("#dt-ignore-cont").hide();
                 } else if(this.value === "Create"){
                     $("#dev-id-cont").show();
                     $("#node-form-row-deviceType").hide();
                     $("#node-form-row-classId").show();
                     $("#dev-type-optional").show();
+                    $("#dt-ignore-cont").show();
                 } else if(this.value === "Update"){
                     $("#dev-id-cont").hide();
                     $("#node-form-row-deviceType").show();
                     $("#node-form-row-classId").hide();
                     $("#dev-type-optional").show();
+                    $("#dt-ignore-cont").hide();
                 }else {
                     $("#dev-id-cont").hide();
                     $("#node-form-row-deviceType").show();
                     $("#node-form-row-classId").hide();
                     $("#dev-type-optional").hide();
+                    $("#dt-ignore-cont").hide();
                 }
 
             });
