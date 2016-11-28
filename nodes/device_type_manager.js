@@ -139,7 +139,7 @@ module.exports = function(RED) {
           //pass the operation name in msg
           //Only for classId and operation, the value passed from the backend overrides the default value
           var operation = msg.operation ? msg.operation : config.method;
-		  var operation_lowercase=operation.toLowerCase();;
+		      var operation_lowercase=operation.toLowerCase();;
           //rest all values from msg.payload
           //try to parse the payload if its string
           if( typeof msg.payload === 'string') {
@@ -154,6 +154,7 @@ module.exports = function(RED) {
           var deviceType = config.deviceType ? config.deviceType : msg.payload.deviceType;
           //This has been modified from msg.payload.deviceTypeId to msg.payload.deviceType so that the user need not pass deviceTypeId for create operation and deviceType for other operations
           var deviceTypeId = config.deviceTypeId ? config.deviceTypeId : msg.payload.deviceType;
+          var ignore = config.ignore ? config.ignore : msg.payload.ignore;
 
           //Only for classId and operation, the value passed from the backend overrides the default value
           var classId = msg.payload.classId ? msg.payload.classId : config.classId || "Device";
@@ -215,7 +216,15 @@ module.exports = function(RED) {
 	                        JSON.parse(metadata);
     	                    appClient.registerDeviceType(deviceTypeId, desc, deviceInfo, JSON.parse(metadata), classId).then(onSuccess,onError);
                   		} else {
-	                        appClient.registerDeviceType(deviceTypeId, desc, deviceInfo, null, classId).then(onSuccess,onError);
+                        var errorHandler =function(argument){
+                          if(argument.status == 409 && ignore){
+                            node.status({fill:"yellow",shape:"dot",text:"Device type aready exist"});
+                            clearStatus();
+                          }else{
+                            onError(argument)
+                          }
+                        }
+	                        appClient.registerDeviceType(deviceTypeId, desc, deviceInfo, null, classId).then(onSuccess,errorHandler);
 	                    }
 
                   } catch (e) {

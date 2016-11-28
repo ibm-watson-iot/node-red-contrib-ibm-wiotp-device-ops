@@ -139,7 +139,7 @@ module.exports = function(RED) {
 
           //pass the operation name in msg
           var operation = msg.operation ? msg.operation : config.method;
-		  var operation_lowercase=operation.toLowerCase();
+		      var operation_lowercase=operation.toLowerCase();
 
           //rest all values from msg.payload
           //try to parse the payload if its string
@@ -150,6 +150,7 @@ module.exports = function(RED) {
 
             }
           }
+          var ignore = config.ignore ? config.ignore : msg.payload.ignore;
 
           // check if he is trying for bulk operation.
           // If the payload is an array, use BULK operation.
@@ -201,7 +202,15 @@ module.exports = function(RED) {
 
           switch (operation_lowercase) {
                 case "create":
-                  appClient.registerDevice(deviceType, deviceId, authToken, deviceInfo, location, metadata).then(onSuccess,onError);
+                  var errorHandler =function(argument){
+                    if(argument.status == 409 && ignore){
+                      node.status({fill:"yellow",shape:"dot",text:"Device Id aready exist"});
+                      clearStatus();
+                    }else{
+                      onError(argument)
+                    }
+                  }
+                  appClient.registerDevice(deviceType, deviceId, authToken, deviceInfo, location, metadata).then(onSuccess,errorHandler);
                   break;
                 case "update":
                   appClient.updateDevice(deviceType, deviceId, deviceInfo, status, metadata, extensions).then(onSuccess,onError);
