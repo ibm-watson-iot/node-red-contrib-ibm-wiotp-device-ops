@@ -284,6 +284,52 @@ limitations under the License.
     <br/>
     </dd>
     </dl>
+
+    To pass the pass the values dynamically, you must pass the input in <code>msg.payload</code>. <br/><br/>
+For example, to create a device, pass the following JSON in <code>msg.payload</code>
+            <pre>
+    {
+        "deviceId": "string",
+        "authToken": "string",
+        "deviceInfo": {
+            "serialNumber": "string",
+            "manufacturer": "string",
+            "model": "string",
+            "deviceClass": "string",
+            "description": "string",
+            "fwVersion": "string",
+            "hwVersion": "string",
+            "descriptiveLocation": "string"
+        },
+        "location": {
+            "longitude": 0,
+            "latitude": 0,
+            "elevation": 0,
+            "accuracy": 0,
+            "measuredDateTime": "2016-08-07T18:50:51.553Z"
+        },
+        "metadata": {}
+    }
+    </pre><br/>
+
+        If you want to use the <a target="_blank" href="https://docs.internetofthings.ibmcloud.com/swagger/v0002.html#!/Bulk_Operations"> bulk create/delete </a> operations, pass the the input as an array in <code>msg.payload</code>.
+        <pre>
+    [
+      {
+        "typeId": "RaspberryPi",
+        "deviceId": "pi01"
+      },
+        {
+        "typeId": "RaspberryPi",
+        "deviceId": "pi02"
+      }
+    ]
+    </pre>
+    </dd>
+    </dl>
+    <dt>Ignore Exception if Device Exists(only for Create Operation)</dt>
+    <dd>This option will ignore the exception that is thrown, when you try to register a new device with a device Id that is already registered in the Watson IoT platform. Also it can be specified by <code>msg.payload.ignore</code>.</dd>
+
     </p>
 </script>
 
