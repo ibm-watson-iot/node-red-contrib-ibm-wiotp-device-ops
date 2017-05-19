@@ -116,23 +116,24 @@ module.exports = function(RED) {
           }
 
           var onSuccess = function(argument) {
-                  var msg = {
-                    payload : argument
-                  }
+                  //var msg = {
+                  //  payload : argument
+                  //}
+		  msg.payload = argument;
                   node.send(msg);
                   node.status({fill:"green",shape:"dot",text:"Sucess"});
                   clearStatus();
           };
 
           var onError =  function(argument) {
-                  var msg = {
-                    payload : argument
-                  }
+                  //var msg = {
+                  //  payload : argument
+                  //}
+		  msg.payload = argument;
                   node.send(msg);
 
                   node.status({fill:"red",shape:"dot",text:"Error. Refer to debug tab"});
           };
-
 
           node.status({fill:"blue",shape:"dot",text:"Requesting"});
 
@@ -257,8 +258,6 @@ module.exports = function(RED) {
           }
         });
     }
-
-
 
 	RED.nodes.registerType("device-type-manager",DeviceTypeHandler);
 	// RED.nodes.registerType("wiotptype",WIoTPNode, {
