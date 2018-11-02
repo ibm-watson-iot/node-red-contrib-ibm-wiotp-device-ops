@@ -215,7 +215,15 @@ module.exports = function(RED) {
                 case "create":
                   try {
                   		if(metadata !== undefined && metadata !== null && metadata !== '') {
-                           appClient.registerDeviceType(deviceTypeId, desc, deviceInfo, metadata, classId).then(onSuccess,onError);
+                        var errorHandler =function(argument){
+                          if(argument.status == 409 && ignore){
+                            node.status({fill:"yellow",shape:"dot",text:"Device type aready exist"});
+                            clearStatus();
+                          }else{
+                            onError(argument)
+                          }
+                        }
+                           appClient.registerDeviceType(deviceTypeId, desc, deviceInfo, metadata, classId).then(onSuccess,errorHandler);
                   		} else {
                         var errorHandler =function(argument){
                           if(argument.status == 409 && ignore){
