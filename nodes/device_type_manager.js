@@ -215,8 +215,7 @@ module.exports = function(RED) {
                 case "create":
                   try {
                   		if(metadata !== undefined && metadata !== null && metadata !== '') {
-	                        JSON.parse(metadata);
-    	                    appClient.registerDeviceType(deviceTypeId, desc, deviceInfo, JSON.parse(metadata), classId).then(onSuccess,onError);
+                           appClient.registerDeviceType(deviceTypeId, desc, deviceInfo, metadata, classId).then(onSuccess,onError);
                   		} else {
                         var errorHandler =function(argument){
                           if(argument.status == 409 && ignore){
