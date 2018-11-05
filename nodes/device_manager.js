@@ -38,7 +38,7 @@ module.exports = function(RED) {
           "auth-token": serviceCreds.credentials.apiToken
           };
         appClient = new IBMIoTF.IotfApplication(wiotp_creds);
-
+        appClient.connect();
       }
     }
 
@@ -50,6 +50,7 @@ module.exports = function(RED) {
           "auth-token": creds.password
           };
         appClient = new IBMIoTF.IotfApplication(wiotp_creds);
+        appClient.connect();
 
     }
     //initialize with Bluemix service
@@ -136,6 +137,12 @@ module.exports = function(RED) {
                   node.status({fill:"red",shape:"dot",text:"Error. Refer to debug tab"});
           };
 
+          node.on("close", function() {
+             if (appClient.isConnected) {
+                appClient.disconnect();
+             }
+          });
+          appClient.on('error', onError);
 
           node.status({fill:"blue",shape:"dot",text:"Requesting"});
 
@@ -188,7 +195,9 @@ module.exports = function(RED) {
           var location = msg.payload.location ? msg.payload.location : {};
           var extensions = msg.payload.extensions ? msg.payload.extensions : {};
           var status = msg.payload.status ? msg.payload.status : {};
-
+          var event = msg.payload.event ? msg.payload.event : {};
+          var eventFormat = msg.payload.eventFormat ? msg.payload.eventFormat : "";
+          var eventType = msg.payload.eventType ? msg.payload.eventType : "";
 
           if(!deviceType ){
             node.error("DeviceType must be set for "+operation+" operation. You can either set in the configuration or must be passed as msg.payload.deviceType");
@@ -240,6 +249,12 @@ module.exports = function(RED) {
                   appClient.getDeviceManagementInformation(deviceType, deviceId).then(onSuccess,onError);
                   break;
                 case "get all gw":
+                  break;
+                case "publishdeviceevent":
+                    node.status({fill:"blue",shape:"dot",text:"Sending"});
+                    node.warn(deviceType + ", " + deviceId + ", " + msg.payload.eventType + ", " + msg.payload.eventFormat + ", " + JSON.stringify(event) );
+                    appClient.publishDeviceEvent(deviceType, deviceId, eventType, eventFormat, JSON.stringify(event));
+                    clearStatus();
                   break;
           }
 
