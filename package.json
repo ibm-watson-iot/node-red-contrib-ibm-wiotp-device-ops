@@ -7,18 +7,23 @@
 		"url": "https://github.com/ibm-watson-iot/node-red-contrib-ibm-wiotp-device-ops"
 	},
 	"readmeFilename": "README.md",
-	"contributors": [{
-		"name": "Amit M Mangalvedkar",
-		"email": "amitmangalvedkar@in.ibm.com"
-	}, {
-		"name": "Jeffrey Dare",
-		"email": "jeffdare@in.ibm.com"
-	}, {
-		"name": "Hari hara prasad Viswanathan",
-		"email": "harihvis@in.ibm.com"
-	}],
+	"contributors": [
+		{
+			"name": "Amit M Mangalvedkar",
+			"email": "amitmangalvedkar@in.ibm.com"
+		},
+		{
+			"name": "Jeffrey Dare",
+			"email": "jeffdare@in.ibm.com"
+		},
+		{
+			"name": "Hari hara prasad Viswanathan",
+			"email": "harihvis@in.ibm.com"
+		}
+	],
 	"license": "Apache-2.0",
-	"keywords": ["node-red",
+	"keywords": [
+		"node-red",
 		"IoT",
 		"Watson",
 		"manager",
@@ -26,8 +31,8 @@
 		"Type"
 	],
 	"dependencies": {
-		"ibmiotf": "latest",
-		"cfenv": "*"
+		"cfenv": "^1.1.0",
+		"ibmiotf": "^0.2.41"
 	},
 	"node-red": {
 		"nodes": {
